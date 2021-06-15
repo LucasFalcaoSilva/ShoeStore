@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.udacity.shoestore.databinding.LoginFragmentBinding
+import androidx.navigation.fragment.NavHostFragment
 import com.udacity.shoestore.databinding.WelcomeFragmentBinding
+import com.udacity.shoestore.screens.instructions.InstructionsFragmentDirections
 import timber.log.Timber
-
 
 class WelcomeFragment : Fragment() {
 
@@ -30,8 +30,9 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun goToInstructionsScreen() {
-        //val action =
-        //NavHostFragment.findNavController(this).navigate(action)
+        InstructionsFragmentDirections.actionInstructionToShoeList().let {
+            NavHostFragment.findNavController(this).navigate(it)
+        }
     }
 
     private fun getBinding() = WelcomeFragmentBinding.inflate(layoutInflater)

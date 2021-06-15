@@ -50,6 +50,15 @@ class LoginFragment : Fragment() {
                 }
             }
         )
+
+        viewModel.eventLogged.observe(viewLifecycleOwner,
+            Observer { hasLogged ->
+                if (hasLogged) {
+                    goToShoeListScreen()
+                    viewModel.onLoggedComplete()
+                }
+            }
+        )
     }
 
     private fun providerViewModel() =
@@ -57,6 +66,12 @@ class LoginFragment : Fragment() {
 
     private fun goToWelcomeScreen() {
         LoginFragmentDirections.actionLoginToWelcome().let {
+            NavHostFragment.findNavController(this).navigate(it)
+        }
+    }
+
+    private fun goToShoeListScreen() {
+        LoginFragmentDirections.actionLoginToShoeList().let {
             NavHostFragment.findNavController(this).navigate(it)
         }
     }

@@ -15,8 +15,20 @@ class LoginViewModel : ViewModel() {
     val eventSignUp: LiveData<Boolean>
         get() = _eventSignUp
 
+    private var _eventLogged = MutableLiveData<Boolean>()
+    val eventLogged: LiveData<Boolean>
+        get() = _eventLogged
+
     init {
         Timber.i("LoginViewModel created!")
+        _eventSignIn.value = false
+        _eventSignUp.value = false
+        _eventLogged.value = false
+
+        if (hasLogged()) {
+            onLogged()
+        }
+
     }
 
     override fun onCleared() {
@@ -24,12 +36,20 @@ class LoginViewModel : ViewModel() {
         Timber.i("LoginViewModel destroyed!")
     }
 
+    // TODO Check if logged, maybe I should use repositories but i did not learn that
+    fun hasLogged() = false
+
     fun onSignIn() {
         Timber.i("do sign in")
         _eventSignIn.value = true
     }
 
     fun onSignUp() {
+        Timber.i("do sign up")
+        _eventSignUp.value = true
+    }
+
+    fun onLogged() {
         Timber.i("do sign up")
         _eventSignUp.value = true
     }
@@ -42,4 +62,7 @@ class LoginViewModel : ViewModel() {
         _eventSignUp.value = false
     }
 
+    fun onLoggedComplete() {
+        _eventLogged.value = false
+    }
 }
