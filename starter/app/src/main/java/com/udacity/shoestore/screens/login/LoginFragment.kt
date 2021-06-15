@@ -18,14 +18,21 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val binding = getBinding()
+    ): View =
+        getBinding().let {
 
-        Timber.i("Called ViewModelProvider")
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        binding.loginViewModel = viewModel
-        binding.lifecycleOwner = this
+            Timber.i("Called ViewModelProvider")
+            viewModel = providerViewModel()
 
+            it.loginViewModel = viewModel
+            it.lifecycleOwner = this
+
+            createLiveData()
+
+            return it.root
+        }
+
+    private fun createLiveData() {
         viewModel.eventSignIn.observe(viewLifecycleOwner,
             Observer { hasSignIn ->
                 if (hasSignIn) {
@@ -43,14 +50,18 @@ class LoginFragment : Fragment() {
                 }
             }
         )
-        return binding.root
     }
+
+    private fun providerViewModel() =
+        ViewModelProvider(this).get(LoginViewModel::class.java)
 
     private fun goToWelcomeScreen() {
-        val action = LoginFragmentDirections.actionLoginToWelcome()
-        NavHostFragment.findNavController(this).navigate(action)
+        LoginFragmentDirections.actionLoginToWelcome().let {
+            NavHostFragment.findNavController(this).navigate(it)
+        }
     }
 
-    private fun getBinding() = LoginFragmentBinding.inflate(layoutInflater)
+    private fun getBinding() =
+        LoginFragmentBinding.inflate(layoutInflater)
 
 }
