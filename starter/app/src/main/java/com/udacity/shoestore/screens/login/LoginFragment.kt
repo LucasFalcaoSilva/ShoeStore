@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.udacity.shoestore.databinding.LoginFragmentBinding
@@ -25,6 +26,23 @@ class LoginFragment : Fragment() {
         binding.loginViewModel = viewModel
         binding.lifecycleOwner = this
 
+        viewModel.eventSignIn.observe(viewLifecycleOwner,
+            Observer { hasSignIn ->
+                if (hasSignIn) {
+                    goToWelcomeScreen()
+                    viewModel.onSignInComplete()
+                }
+            }
+        )
+
+        viewModel.eventSignUp.observe(viewLifecycleOwner,
+            Observer { hasSignUp ->
+                if (hasSignUp) {
+                    goToWelcomeScreen()
+                    viewModel.onSignUpComplete()
+                }
+            }
+        )
         return binding.root
     }
 
