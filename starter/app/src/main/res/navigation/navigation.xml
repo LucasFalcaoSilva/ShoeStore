@@ -13,11 +13,38 @@
         <action
             android:id="@+id/action_login_to_welcome"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_login_to_shoeList"
+            app:destination="@id/shoeListFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.udacity.shoestore.screens.welcome.WelcomeFragment"
         android:label="wellcome_welcome"
-        tools:layout="@layout/welcome_fragment" />
+        tools:layout="@layout/welcome_fragment">
+        <action
+            android:id="@+id/action_welcome_to_instruction"
+            app:destination="@id/instructionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/instructionsFragment"
+        android:name="com.udacity.shoestore.screens.instructions.InstructionsFragment"
+        android:label="InstructionsFragment">
+        <action
+            android:id="@+id/action_instruction_to_shoeList"
+            app:destination="@id/shoeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoeDetailFragment"
+        android:name="com.udacity.shoestore.screens.shoe.detail.ShoeDetailFragment"
+        android:label="ShoeDetailFragment" />
+    <fragment
+        android:id="@+id/shoeListFragment"
+        android:name="com.udacity.shoestore.screens.shoe.list.ShoeListFragment"
+        android:label="ShoeListFragment">
+        <action
+            android:id="@+id/action_shoeList_to_shoeDetail"
+            app:destination="@id/shoeDetailFragment" />
+    </fragment>
 </navigation>
