@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.udacity.shoestore.databinding.InstructionsFragmentBinding
-import timber.log.Timber
 
 class InstructionsFragment : Fragment() {
 
@@ -18,13 +17,19 @@ class InstructionsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val binding = getBinding()
+    ): View = getBinding().let {
 
-        Timber.i("Called ViewModelProvider")
-        viewModel = ViewModelProvider(this).get(InstructionsViewModel::class.java)
-        binding.instructionsViewModel = viewModel
-        binding.lifecycleOwner = this
+        viewModel = providerViewModel()
+        it.instructionsViewModel = viewModel
+        it.instruction = viewModel.instruction
+        it.lifecycleOwner = this
+
+        createLiveData()
+
+        return it.root
+    }
+
+    private fun createLiveData() {
 
         viewModel.eventCompleteInstructions.observe(viewLifecycleOwner,
             Observer { hasSkip ->
@@ -34,9 +39,10 @@ class InstructionsFragment : Fragment() {
                 }
             }
         )
-
-        return binding.root
     }
+
+    private fun providerViewModel() =
+        ViewModelProvider(this).get(InstructionsViewModel::class.java)
 
     private fun goToShoeListScreen() {
         InstructionsFragmentDirections.actionInstructionToShoeList().let {

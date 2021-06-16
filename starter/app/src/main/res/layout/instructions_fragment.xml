@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="instruction"
+            type="com.udacity.shoestore.models.Instruction" />
+
+        <variable
             name="instructionsViewModel"
             type="com.udacity.shoestore.screens.instructions.InstructionsViewModel" />
     </data>
@@ -16,6 +20,89 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/layout_margin"
         tools:context=".screens.instructions.InstructionsFragment">
+
+        <TextView
+            android:id="@+id/first_instruction_text"
+            style="@style/NameStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{instruction.firstInstruction}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/lorem_ipsum_instruction" />
+
+        <TextView
+            android:id="@+id/second_instruction_text"
+            style="@style/NameStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{instruction.secondInstruction}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/first_instruction_text"
+            tools:text="@string/lorem_ipsum_instruction" />
+
+        <TextView
+            android:id="@+id/third_instruction_text"
+            style="@style/NameStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{instruction.thirdInstruction}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/second_instruction_text"
+            tools:text="@string/lorem_ipsum_instruction" />
+
+        <TextView
+            android:id="@+id/fourth_instruction_text"
+            style="@style/NameStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{instruction.fourthInstruction}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/third_instruction_text"
+            tools:text="@string/lorem_ipsum_instruction" />
+
+        <TextView
+            android:id="@+id/fifth_instruction_text"
+            style="@style/NameStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{instruction.fifthInstruction}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fourth_instruction_text"
+            tools:text="@string/lorem_ipsum_instruction" />
+
+        <TextView
+            android:id="@+id/sixth_instruction_text"
+            style="@style/NameStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{instruction.sixthInstruction}"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fifth_instruction_text"
+            tools:text="@string/lorem_ipsum_instruction" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/skip_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()-> instructionsViewModel.onSkip()}"
+            android:text="@string/skip"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

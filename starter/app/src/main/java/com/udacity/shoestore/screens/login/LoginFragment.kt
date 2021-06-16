@@ -18,19 +18,18 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View =
-        getBinding().let {
+    ): View = getBinding().let {
 
-            Timber.i("Called ViewModelProvider")
-            viewModel = providerViewModel()
+        Timber.i("Called ViewModelProvider")
+        viewModel = providerViewModel()
 
-            it.loginViewModel = viewModel
-            it.lifecycleOwner = this
+        it.loginViewModel = viewModel
+        it.lifecycleOwner = this
 
-            createLiveData()
+        createLiveData()
 
-            return it.root
-        }
+        return it.root
+    }
 
     private fun createLiveData() {
         viewModel.eventSignIn.observe(viewLifecycleOwner,

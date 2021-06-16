@@ -8,7 +8,10 @@ import timber.log.Timber
 
 class WelcomeViewModel : ViewModel() {
 
-    val welcome = Welcome("teste", "DAadsAZXCZXXCZX")
+    val welcome = Welcome(
+        title = "Welcome To my Shoe Store",
+        description = "This Shoe Store is a project app for Udacity program where some skills will are demonstrate"
+    )
 
     private var _eventSkipWelcome = MutableLiveData<Boolean>()
     val eventCompleteInstructions: LiveData<Boolean>

@@ -5,12 +5,16 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
     <string name="skip">Skip</string>
-    <string name="lorem_ipsum_description">Lorem Ipsum is simply dummy text of the printing and typesetting i
+    <string name="lorem_ipsum_description">
+        Lorem Ipsum is simply dummy text of the printing and typesetting i
         ndustry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,
         when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of
-        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-        software like Aldus PageMaker including versions of Lorem Ipsum</string>
+    </string>
     <string name="lorem_ipsum_title">Lorem Ipsum</string>
+    <string name="login_shoe_store">Shoe Store - Login</string>
+    <string name="lorem_ipsum_instruction">Lorem Ipsum</string>
+    <string name="welcome_shoe_store">Shoe Store - Welcome</string>
+    <string name="instructions_shoe_store">Shoe Store - Instructions</string>
+    <string name="detail_shoe_store">Shoe Store - Shoe Details</string>
+    <string name="list_shoe_store">Shoe Store - Shoe List</string>
 </resources>

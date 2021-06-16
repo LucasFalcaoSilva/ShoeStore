@@ -17,14 +17,21 @@ class WelcomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val binding = getBinding()
+    ): View = getBinding().let {
 
-        viewModel = ViewModelProvider(this).get(WelcomeViewModel::class.java)
-        binding.welcomeViewModel = viewModel
-        binding.lifecycleOwner = this
-        binding.welcome = viewModel.welcome
+        viewModel = providerViewModel()
 
+        it.welcomeViewModel = viewModel
+        it.welcome = viewModel.welcome
+
+        it.lifecycleOwner = this
+
+        createLiveData()
+
+        return it.root
+    }
+
+    private fun createLiveData() {
         viewModel.eventCompleteInstructions.observe(viewLifecycleOwner,
             Observer { hasSkip ->
                 if (hasSkip) {
@@ -33,8 +40,10 @@ class WelcomeFragment : Fragment() {
                 }
             }
         )
-        return binding.root
     }
+
+    private fun providerViewModel() =
+        ViewModelProvider(this).get(WelcomeViewModel::class.java)
 
     private fun goToInstructionsScreen() {
         WelcomeFragmentDirections.actionWelcomeToInstruction().let {
