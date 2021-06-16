@@ -3,27 +3,29 @@ package com.udacity.shoestore.screens.welcome
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.udacity.shoestore.models.Welcome
 import timber.log.Timber
 
 class WelcomeViewModel : ViewModel() {
 
-    private var _eventCompleteInstructions = MutableLiveData<Boolean>()
+    val welcome = Welcome("teste", "DAadsAZXCZXXCZX")
+
+    private var _eventSkipWelcome = MutableLiveData<Boolean>()
     val eventCompleteInstructions: LiveData<Boolean>
-        get() = _eventCompleteInstructions
+        get() = _eventSkipWelcome
 
     init {
         Timber.i("WelcomeViewModel created!")
-
-        _eventCompleteInstructions.value = false
+        _eventSkipWelcome.value = false
     }
 
-    fun onLogged() {
+    fun onSkip() {
         Timber.i("do sign up")
-        _eventCompleteInstructions.value = true
+        _eventSkipWelcome.value = true
     }
 
-    fun onSignInComplete() {
-        _eventCompleteInstructions.value = false
+    fun onSkipComplete() {
+        _eventSkipWelcome.value = false
     }
 
     override fun onCleared() {

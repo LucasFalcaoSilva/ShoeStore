@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.udacity.shoestore.databinding.WelcomeFragmentBinding
-import com.udacity.shoestore.screens.instructions.InstructionsFragmentDirections
-import timber.log.Timber
 
 class WelcomeFragment : Fragment() {
 
@@ -21,16 +20,24 @@ class WelcomeFragment : Fragment() {
     ): View {
         val binding = getBinding()
 
-        Timber.i("Called ViewModelProvider")
         viewModel = ViewModelProvider(this).get(WelcomeViewModel::class.java)
         binding.welcomeViewModel = viewModel
         binding.lifecycleOwner = this
+        binding.welcome = viewModel.welcome
 
+        viewModel.eventCompleteInstructions.observe(viewLifecycleOwner,
+            Observer { hasSkip ->
+                if (hasSkip) {
+                    goToInstructionsScreen()
+                    viewModel.onSkipComplete()
+                }
+            }
+        )
         return binding.root
     }
 
     private fun goToInstructionsScreen() {
-        InstructionsFragmentDirections.actionInstructionToShoeList().let {
+        WelcomeFragmentDirections.actionWelcomeToInstruction().let {
             NavHostFragment.findNavController(this).navigate(it)
         }
     }
