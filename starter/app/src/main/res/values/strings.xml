@@ -17,4 +17,10 @@
     <string name="instructions_shoe_store">Shoe Store - Instructions</string>
     <string name="detail_shoe_store">Shoe Store - Shoe Details</string>
     <string name="list_shoe_store">Shoe Store - Shoe List</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="shoe_size">Shoe Size</string>
+    <string name="company">Company</string>
+    <string name="shoe_name">Shoe Name</string>
+    <string name="description">Description</string>
 </resources>

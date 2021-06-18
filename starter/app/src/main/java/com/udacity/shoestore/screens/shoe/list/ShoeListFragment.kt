@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.udacity.shoestore.databinding.ShoeListFragmentBinding
+import com.udacity.shoestore.screens.instructions.InstructionsFragmentDirections
+import com.udacity.shoestore.screens.instructions.InstructionsViewModel
 import timber.log.Timber
 
 class ShoeListFragment : Fragment() {
@@ -16,20 +19,29 @@ class ShoeListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val binding = getBinding()
+    ): View = getBinding().let {
 
-        Timber.i("Called ViewModelProvider")
-        viewModel = ViewModelProvider(this).get(ShoeListViewModel::class.java)
-        binding.shoeListViewModel = viewModel
-        binding.lifecycleOwner = this
+        viewModel = providerViewModel()
 
-        return binding.root
+        it.shoeListViewModel = viewModel
+        it.lifecycleOwner = this
+
+        createLiveData()
+
+        return it.root
     }
 
-    private fun goToInstructionsScreen() {
-        //val action =
-        //NavHostFragment.findNavController(this).navigate(action)
+    private fun createLiveData() {
+
+    }
+
+    private fun providerViewModel() =
+        ViewModelProvider(this).get(ShoeListViewModel::class.java)
+
+    private fun goToShoeDetailScreen() {
+        ShoeListFragmentDirections.actionShoeListToShoeDetail().let {
+            NavHostFragment.findNavController(this).navigate(it)
+        }
     }
 
     private fun getBinding() = ShoeListFragmentBinding.inflate(layoutInflater)
