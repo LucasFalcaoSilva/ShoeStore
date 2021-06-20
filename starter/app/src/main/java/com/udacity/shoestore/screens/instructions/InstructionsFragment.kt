@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.databinding.InstructionsFragmentBinding
 
 class InstructionsFragment : Fragment() {
@@ -46,7 +46,7 @@ class InstructionsFragment : Fragment() {
 
     private fun goToShoeListScreen() {
         InstructionsFragmentDirections.actionInstructionToShoeList().let {
-            NavHostFragment.findNavController(this).navigate(it)
+            findNavController().navigate(it)
         }
     }
 

@@ -1,20 +1,24 @@
 package com.udacity.shoestore.screens.shoe.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.ShoeListFragmentBinding
-import com.udacity.shoestore.screens.instructions.InstructionsFragmentDirections
-import com.udacity.shoestore.screens.instructions.InstructionsViewModel
-import timber.log.Timber
 
 class ShoeListFragment : Fragment() {
 
     private lateinit var viewModel: ShoeListViewModel
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.logout_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) =
+        NavigationUI.onNavDestinationSelected(item, findNavController())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +44,7 @@ class ShoeListFragment : Fragment() {
 
     private fun goToShoeDetailScreen() {
         ShoeListFragmentDirections.actionShoeListToShoeDetail().let {
-            NavHostFragment.findNavController(this).navigate(it)
+            findNavController().navigate(it)
         }
     }
 

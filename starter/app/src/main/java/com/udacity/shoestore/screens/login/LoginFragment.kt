@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.udacity.shoestore.data.PreferenceManager
 import com.udacity.shoestore.databinding.LoginFragmentBinding
 import timber.log.Timber
 
 class LoginFragment : Fragment() {
 
     private lateinit var viewModel: LoginViewModel
+    private lateinit var viewModelFactory: LoginViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,17 +63,24 @@ class LoginFragment : Fragment() {
     }
 
     private fun providerViewModel() =
-        ViewModelProvider(this).get(LoginViewModel::class.java)
+        ViewModelProvider(
+            this,
+            LoginViewModelFactory(
+                PreferenceManager(
+                    activity?.applicationContext
+                )
+            )
+        ).get(LoginViewModel::class.java)
 
     private fun goToWelcomeScreen() {
         LoginFragmentDirections.actionLoginToWelcome().let {
-            NavHostFragment.findNavController(this).navigate(it)
+            findNavController().navigate(it)
         }
     }
 
     private fun goToShoeListScreen() {
         LoginFragmentDirections.actionLoginToShoeList().let {
-            NavHostFragment.findNavController(this).navigate(it)
+            findNavController().navigate(it)
         }
     }
 

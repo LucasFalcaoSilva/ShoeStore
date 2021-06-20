@@ -23,4 +23,5 @@
     <string name="company">Company</string>
     <string name="shoe_name">Shoe Name</string>
     <string name="description">Description</string>
+    <string name="logout">Logout</string>
 </resources>

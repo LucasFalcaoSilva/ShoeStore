@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.databinding.ShoeDetailFragmentBinding
 import com.udacity.shoestore.models.Shoe
 
@@ -72,7 +72,7 @@ class ShoeDetailFragment : Fragment() {
 
     private fun goToShoeListScreen(shoe: Shoe? = null) {
         ShoeDetailFragmentDirections.actionShoeDetailToShoeList(shoe).let {
-            NavHostFragment.findNavController(this).navigate(it)
+            findNavController().navigate(it)
         }
     }
 

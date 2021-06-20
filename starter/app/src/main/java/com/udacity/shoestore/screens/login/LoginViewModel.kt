@@ -3,9 +3,12 @@ package com.udacity.shoestore.screens.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.udacity.shoestore.data.PreferenceManager
 import timber.log.Timber
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(
+    private val preferencesManager: PreferenceManager
+) : ViewModel() {
 
     private var _eventSignIn = MutableLiveData<Boolean>()
     val eventSignIn: LiveData<Boolean>
@@ -36,22 +39,23 @@ class LoginViewModel : ViewModel() {
         Timber.i("LoginViewModel destroyed!")
     }
 
-    // TODO Check if logged, maybe I should use repositories but i did not learn that
-    fun hasLogged() = false
+    private fun hasLogged() = preferencesManager.hasLogged()
 
     fun onSignIn() {
         Timber.i("do sign in")
+        preferencesManager.saveLogin()
         _eventSignIn.value = true
     }
 
     fun onSignUp() {
         Timber.i("do sign up")
+        preferencesManager.saveLogin()
         _eventSignUp.value = true
     }
 
     fun onLogged() {
-        Timber.i("do sign up")
-        _eventSignUp.value = true
+        Timber.i("has Logged")
+        _eventLogged.value = true
     }
 
     fun onSignInComplete() {
