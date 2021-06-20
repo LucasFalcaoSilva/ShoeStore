@@ -24,4 +24,5 @@
     <string name="shoe_name">Shoe Name</string>
     <string name="description">Description</string>
     <string name="logout">Logout</string>
+    <string name="add_item">Add item</string>
 </resources>

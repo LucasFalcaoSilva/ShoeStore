@@ -7,15 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.udacity.shoestore.MainViewModel
 import com.udacity.shoestore.databinding.ShoeDetailFragmentBinding
-import com.udacity.shoestore.models.Shoe
 
 class ShoeDetailFragment : Fragment() {
 
     private lateinit var viewModel: ShoeDetailViewModel
+
+    private val model: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,18 +65,16 @@ class ShoeDetailFragment : Fragment() {
         viewModel.shoe.observe(viewLifecycleOwner,
             Observer { shoe ->
                 if (shoe != null) {
-                    goToShoeListScreen(shoe)
+                    model.addShoe(shoe)
+                    goToShoeListScreen()
                     viewModel.closeShoeDetail()
                 }
             }
         )
-
     }
 
-    private fun goToShoeListScreen(shoe: Shoe? = null) {
-        ShoeDetailFragmentDirections.actionShoeDetailToShoeList(shoe).let {
-            findNavController().navigate(it)
-        }
+    private fun goToShoeListScreen() {
+        findNavController().popBackStack()
     }
 
     private fun providerViewModel() =
