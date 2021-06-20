@@ -33,8 +33,9 @@ class ShoeListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.loginFragment) {
             viewModel.onLogout()
+            goToLoginScreen()
         }
-        return NavigationUI.onNavDestinationSelected(item, findNavController())
+        return true
     }
 
     override fun onCreateView(
@@ -106,6 +107,11 @@ class ShoeListFragment : Fragment() {
         }
     }
 
+    private fun goToLoginScreen() {
+        ShoeListFragmentDirections.actionShoeListToLogin().let {
+            findNavController().navigate(it)
+        }
+    }
     private fun getBinding() = ShoeListFragmentBinding.inflate(layoutInflater)
 
 }
