@@ -10,11 +10,7 @@ class InstructionsViewModel : ViewModel() {
 
     val instruction = Instruction(
         firstInstruction = "Instruction One",
-        secondInstruction = "Instruction Two",
-        thirdInstruction = "Instruction Three",
-        fourthInstruction = "Instruction Four",
-        fifthInstruction = "Instruction Five",
-        sixthInstruction = "Instruction Six"
+        secondInstruction = "Instruction Two"
     )
 
     private var _eventSkipInstructions = MutableLiveData<Boolean>()

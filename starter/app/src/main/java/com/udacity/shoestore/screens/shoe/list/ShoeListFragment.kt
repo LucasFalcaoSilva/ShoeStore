@@ -26,6 +26,7 @@ class ShoeListFragment : Fragment() {
     private lateinit var mainLinear: LinearLayout
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.logout_menu, menu)
     }
 
@@ -40,6 +41,8 @@ class ShoeListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = getBinding().let {
+
+        setHasOptionsMenu(true)
 
         viewModel = providerViewModel()
 

@@ -45,54 +45,6 @@
             app:layout_constraintTop_toBottomOf="@+id/first_instruction_text"
             tools:text="@string/lorem_ipsum_instruction" />
 
-        <TextView
-            android:id="@+id/third_instruction_text"
-            style="@style/NameStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{instruction.thirdInstruction}"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/second_instruction_text"
-            tools:text="@string/lorem_ipsum_instruction" />
-
-        <TextView
-            android:id="@+id/fourth_instruction_text"
-            style="@style/NameStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{instruction.fourthInstruction}"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/third_instruction_text"
-            tools:text="@string/lorem_ipsum_instruction" />
-
-        <TextView
-            android:id="@+id/fifth_instruction_text"
-            style="@style/NameStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{instruction.fifthInstruction}"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fourth_instruction_text"
-            tools:text="@string/lorem_ipsum_instruction" />
-
-        <TextView
-            android:id="@+id/sixth_instruction_text"
-            style="@style/NameStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{instruction.sixthInstruction}"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fifth_instruction_text"
-            tools:text="@string/lorem_ipsum_instruction" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/skip_button"
             style="?attr/materialButtonOutlinedStyle"
