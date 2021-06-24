@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.MainViewModel
 import com.udacity.shoestore.databinding.ShoeDetailFragmentBinding
+import com.udacity.shoestore.models.Shoe
+import timber.log.Timber
 
 class ShoeDetailFragment : Fragment() {
 
@@ -28,16 +30,6 @@ class ShoeDetailFragment : Fragment() {
         viewModel = providerViewModel()
         binding.shoeDetailViewModel = viewModel
         binding.lifecycleOwner = this
-
-        binding.saveButton.setOnClickListener {
-            viewModel.onSaveShoe(
-                shoeName = binding.shoeNameText.text.toString(),
-                shoeSize = binding.shoeSizeText.text.toString(),
-                shoeCompany = binding.companyText.text.toString(),
-                shoeDescription = binding.descriptionText.text.toString()
-            )
-        }
-
         createLiveData()
 
         return binding.root
@@ -62,12 +54,13 @@ class ShoeDetailFragment : Fragment() {
             }
         )
 
-        viewModel.shoe.observe(viewLifecycleOwner,
-            Observer { shoe ->
-                if (shoe != null) {
-                    model.addShoe(shoe)
+        viewModel.eventSave.observe(viewLifecycleOwner,
+            Observer { save ->
+                if (save) {
+                    Timber.i("Tentando salvar Shoe")
+                    model.addShoe(viewModel.shoe.value ?: Shoe())
                     goToShoeListScreen()
-                    viewModel.closeShoeDetail()
+                    viewModel.onSaveComplete()
                 }
             }
         )

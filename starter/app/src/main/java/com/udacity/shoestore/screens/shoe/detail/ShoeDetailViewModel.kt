@@ -20,10 +20,16 @@ class ShoeDetailViewModel : ViewModel() {
     val eventCancel: LiveData<Boolean>
         get() = _eventCancel
 
+    private var _eventSave = MutableLiveData<Boolean>()
+    val eventSave: LiveData<Boolean>
+        get() = _eventSave
+
     init {
         Timber.i("ShoeDetailViewModel created!")
         _eventHideKeyboard.value = false
         _eventCancel.value = false
+        _eventSave.value = false
+        _shoe.value = Shoe()
     }
 
     override fun onCleared() {
@@ -35,25 +41,10 @@ class ShoeDetailViewModel : ViewModel() {
         _eventCancel.value = true
     }
 
-    fun onSaveShoe(
-        shoeName: String,
-        shoeSize: String,
-        shoeCompany: String,
-        shoeDescription: String
-    ) {
+    fun onSaveShoe() {
         hideKeyboard()
-
-        _shoe.postValue(
-            Shoe(
-                name = shoeName.trim(),
-                company = shoeCompany.trim(),
-                description = shoeDescription.trim(),
-                size = if (shoeSize.trim() == "")
-                    0.0
-                else
-                    shoeSize.toDouble()
-            )
-        )
+        Timber.i("ShoeDetailViewModel onSaveShoe")
+        _eventSave.value = true
     }
 
     private fun hideKeyboard() {
@@ -68,8 +59,8 @@ class ShoeDetailViewModel : ViewModel() {
         _eventCancel.value = false
     }
 
-    fun closeShoeDetail() {
-        _shoe.postValue(null)
+    fun onSaveComplete() {
+        _eventSave.value = false
     }
 
 }

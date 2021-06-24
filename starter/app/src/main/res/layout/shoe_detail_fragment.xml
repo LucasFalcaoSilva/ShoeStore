@@ -37,6 +37,7 @@
                 android:id="@+id/save_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> shoeDetailViewModel.onSaveShoe()}"
                 android:text="@string/save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cancel_button"
@@ -56,7 +57,8 @@
                     android:id="@+id/shoe_name_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/shoe_name" />
+                    android:hint="@string/shoe_name"
+                    android:text="@={shoeDetailViewModel.shoe.name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +75,8 @@
                     android:id="@+id/company_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/company" />
+                    android:hint="@string/company"
+                    android:text="@={shoeDetailViewModel.shoe.company}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,10 +113,10 @@
                     android:id="@+id/description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/description" />
+                    android:hint="@string/description"
+                    android:text="@={shoeDetailViewModel.shoe.description}" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
