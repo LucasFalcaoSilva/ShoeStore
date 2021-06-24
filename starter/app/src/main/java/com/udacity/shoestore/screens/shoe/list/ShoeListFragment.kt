@@ -1,18 +1,22 @@
 package com.udacity.shoestore.screens.shoe.list
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.MainViewModel
 import com.udacity.shoestore.R
 import com.udacity.shoestore.data.PreferenceManager
+import com.udacity.shoestore.databinding.ItemShoeBinding
 import com.udacity.shoestore.databinding.ShoeListFragmentBinding
 import com.udacity.shoestore.models.Shoe
 import timber.log.Timber
@@ -75,18 +79,15 @@ class ShoeListFragment : Fragment() {
         )
     }
 
-    private fun addItem(shoe: Shoe) {
+    private fun addItem(itemShoe : Shoe) {
         Timber.i("New Shoe in Layout")
-        TextView(context, null, 0, R.style.NameStyle).apply {
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT
-            )
-            textAlignment = View.TEXT_ALIGNMENT_CENTER
-            text = "Name: ${shoe.name} - Company: " +
-                    "${shoe.company}\nSize: ${shoe.size}\nDescription: ${shoe.description}"
-
-            mainLinear.addView(this)
+        ItemShoeBinding.inflate(
+            layoutInflater,
+            null,
+            false
+        ).apply {
+            shoe = itemShoe
+            mainLinear.addView(root)
         }
 
     }
@@ -112,6 +113,7 @@ class ShoeListFragment : Fragment() {
             findNavController().navigate(it)
         }
     }
+
     private fun getBinding() = ShoeListFragmentBinding.inflate(layoutInflater)
 
 }

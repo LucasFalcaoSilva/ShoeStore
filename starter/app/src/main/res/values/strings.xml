@@ -25,4 +25,8 @@
     <string name="description">Description</string>
     <string name="logout">Logout</string>
     <string name="add_item">Add item</string>
+    <string name="format_shoe_name">Shoe: %s</string>
+    <string name="format_size">Size: %s</string>
+    <string name="format_company">Company: %s</string>
+    <string name="format_description">Description: %s</string>
 </resources>
